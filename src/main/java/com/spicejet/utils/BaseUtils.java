@@ -43,7 +43,7 @@ public class BaseUtils {
 	
 	// this method is user for browser launch
 	// parameter ==> (browser -> name), (url -> application url)
-	public static WebDriver launchBrowser(String browser, String url) {
+	public static WebDriver launchBrowser(String browser, String url, String headLess) {
 		
 		try {
 		
@@ -51,6 +51,11 @@ public class BaseUtils {
 			
 			option.addArguments("--disable-notifications");
 			option.addArguments("--disable-geolocation");
+			
+			if (headLess.equalsIgnoreCase("HeadLess")) {
+				
+				option.addArguments("--headless=new");
+			}
 			
 			driver = new ChromeDriver(option);
 			

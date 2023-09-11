@@ -16,7 +16,7 @@ public class Hooks extends BaseUtils{
 	@BeforeAll
 	public static void browserLaunch() {
 		
-		launchBrowser("Chrome", property.getURL());
+		launchBrowser("Chrome", property.getURL(), "");
 	}
 	
 	@AfterStep
