@@ -5,12 +5,12 @@
 
 	<test name="Test">
 		
-		<parameter name="cucumber.features" value="features"/>
+		<!-- <parameter name="cucumber.features" value="features"/>
         <parameter name="cucumber.glue" value="com.stepdefinitions"/>
         <parameter name="cucumber.monochrome" value="true"/>
         <parameter name="cucumber.dryRun" value="true"/>
         <parameter name="cucumber.plugin" value="json:target/reports/JsonReports.json, 
-        com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"/>
+        com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"/> -->
         
 		<classes>
 			<class name="com.runner.TestRunner"></class>
