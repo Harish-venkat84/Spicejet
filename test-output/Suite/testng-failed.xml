@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <parameter name="cucumber.filter.tags" value="@loginWith_ValidMailID_InvalidPassword"/>
+  <test thread-count="5" name="Test(failed)">
+    <parameter name="cucumber.features" value="features"/>
+    <parameter name="cucumber.dryRun" value="true"/>
+    <parameter name="cucumber.glue" value="com.stepdefinitions"/>
+    <parameter name="cucumber.plugin" value="json:target/reports/JsonReports.json,          com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"/>
+    <parameter name="cucumber.monochrome" value="true"/>
+    <classes>
+      <class name="com.runner.TestRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="tearDownClass"/>
+          <include name="runScenario" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.runner.TestRunner -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

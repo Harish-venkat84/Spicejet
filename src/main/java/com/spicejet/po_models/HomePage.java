@@ -38,6 +38,9 @@ public class HomePage {
 	@FindBy(xpath = "//input[@type = 'email']")
 	private WebElement emailID;
 	
+	@FindBy(xpath = "//div[text() = 'Please enter a valid email address']")
+	private WebElement invalidEmailAddress;
+	
 	@FindBy(xpath = "//input[@type = 'password']")
 	private WebElement password;
 	

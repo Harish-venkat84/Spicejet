@@ -7,7 +7,7 @@ import com.spicejet.utils.BaseUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class Login_Negative extends BaseUtils{
+public class Login_Invalid_Credentials extends BaseUtils{
 
 	@Given("user click login button in the Homepage")
 	public void user_click_login_button_in_the_homepage() {

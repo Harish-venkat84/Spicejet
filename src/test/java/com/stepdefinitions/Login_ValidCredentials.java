@@ -8,7 +8,7 @@ import com.spicejet.utils.BaseUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class Login extends BaseUtils{
+public class Login_ValidCredentials extends BaseUtils{
 
 	@Given("User must click Login button on the HomePage")
 	public void user_must_click_login_button_on_the_home_page() {

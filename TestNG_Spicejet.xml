@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<!-- These are the tag names you could change before executing the XML file.-->
-
-<!-- @SignUp,
-	 @loginValidCredentials, 
-	 @loginInvaildCredentials, 
-	 @OneWayTrip, 
-	 @RoundTrip, 
-	 @OneWayTrip or @Flight,
-	 @homepage -->
-
-<!-- Reports will be generated in the target folder -->
-
 <suite name="Suite">
 
-	<parameter name="cucumber.filter.tags" value="@loginValidCredentials" />
-	
 	<test name="Test">
 		
 		<parameter name="cucumber.features" value="features"/>
         <parameter name="cucumber.glue" value="com.stepdefinitions"/>
-        <parameter name="cucumber.plugin" value="json:target/cucumber-report/cucumber.json, html:target/cucumber-report/cucumber.html, 
+        <parameter name="cucumber.monochrome" value="true"/>
+        <parameter name="cucumber.dryRun" value="true"/>
+        <parameter name="cucumber.plugin" value="json:target/reports/JsonReports.json, 
         com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"/>
         
 		<classes>

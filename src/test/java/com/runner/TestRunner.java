@@ -2,12 +2,27 @@ package com.runner;
 
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(features = "features", 
+
+					glue = "com.stepdefinitions", 
+					
+					monochrome = true, 
+					
+					dryRun = false, 
+					
+					plugin = {
+							
+							"json:target/reports/WebAutomationJsonReports.json", 
+							
+					        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+					},
+
+					tags = ("@loginWith_InvalidMailID_ValidPassword")
+				)
+
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 
-	/*
-	 * Once the TestNG.xml file is opened, any necessary changes can be made to the tag names. 
-	 * After making the required modifications, the XML file can be executed to run the tests. 
-	 */
-	
 }
