@@ -66,6 +66,9 @@ public class SignUpPage {
 	@FindBy(xpath = "//div[text() = 'Member account exists with given email ID']")
 	private WebElement existingEmailIDErrorMessage;
 	
+	@FindBy(xpath = "//div[contains(text(), 'Please fill all mandatory fields marked with an')]")
+	private WebElement fillAllMandatoryErrorMessage;
+	
 	public SignUpPage(WebDriver driver2) {
 	
 		this.driver = driver2;

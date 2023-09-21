@@ -297,6 +297,22 @@ public class BaseUtils {
 				ex.printStackTrace();
 			}
 	}
+	
+	// this method use for click an element on the web page using java script
+	public void clickElementUsingJavaScript(WebElement element) {
+		
+		try {
+			
+			javaScriptObj().executeScript("arguments[0].click();", element);
+			
+		} catch (Exception e) {
+
+			System.out.println("problem on clicking using javascript in "+ className()+ "clickElementUsingJavaScript method");
+			e.printStackTrace();
+		}
+
+	}
+	
 	// used for clear input field
 	public void clerTextUsingJavaScript(WebElement element) {
 		try {
