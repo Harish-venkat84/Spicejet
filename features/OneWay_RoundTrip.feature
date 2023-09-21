@@ -1,7 +1,13 @@
 Feature: Validating One way and Round Trip Functionality
 
-  @OneWayTrip
-  Scenario: Validating One way
+	@searchFlight_Without_Entering_Details
+	Scenario: Validating without Entering any details Clicking Search Flight
+	# these two steps added in the OneWayTrip java Class 
+	Given User click the Search Filght button
+	Then Validate Popup Message "Destination city cannot be empty"
+
+  @oneWayTripValidCredentials
+  Scenario: Validating One way with Valid Credentials
     Given User select the city where is he or she going to take off the flight
     When User Select destination city from destination drop down
     And User select departure date from the calendar picker
@@ -10,8 +16,8 @@ Feature: Validating One way and Round Trip Functionality
     And User click the search flight button
     Then Validate the booking cities and Validate the number of passenger
 
-  @RoundTrip
-  Scenario: Valiadating Round Trip
+  @roundTripValidCredentials
+  Scenario: Valiadating Round Trip with Valid Credentials
     Given user select the Round Trip Radio button
     When User select the city take off city
     And user select landing city

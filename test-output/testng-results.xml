@@ -2,42 +2,42 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-09-21T23:48:20 IST" name="Default suite" finished-at="2023-09-21T23:49:20 IST" duration-ms="60334">
+  <suite started-at="2023-09-22T00:50:30 IST" name="Default suite" finished-at="2023-09-22T00:50:57 IST" duration-ms="26996">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@2eee3069]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@2da59753]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-09-21T23:48:20 IST" name="Default test" finished-at="2023-09-21T23:49:20 IST" duration-ms="60334">
+    <test started-at="2023-09-22T00:50:30 IST" name="Default test" finished-at="2023-09-22T00:50:57 IST" duration-ms="26996">
       <class name="com.runner.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@2eee3069]" started-at="2023-09-21T23:48:20 IST" name="setUpClass" finished-at="2023-09-21T23:48:41 IST" duration-ms="20858" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunner@2da59753]" started-at="2023-09-22T00:50:30 IST" name="setUpClass" finished-at="2023-09-22T00:50:51 IST" duration-ms="20661" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@15f2a43f]]>
+                <![CDATA[org.testng.TestRunner@6d4a05f7]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@2eee3069]" started-at="2023-09-21T23:48:41 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-21T23:49:17 IST" duration-ms="36527" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunner@2da59753]" started-at="2023-09-22T00:50:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-22T00:50:54 IST" duration-ms="3361" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Validating SignUp With Existing Account Mobile Number and Email ID"]]>
+                <![CDATA["Validating without Entering any details Clicking Search Flight"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["SignUp Functionality"]]>
+                <![CDATA["Validating One way and Round Trip Functionality"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@2eee3069]" started-at="2023-09-21T23:49:17 IST" name="tearDownClass" finished-at="2023-09-21T23:49:20 IST" duration-ms="2787" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunner@2da59753]" started-at="2023-09-22T00:50:54 IST" name="tearDownClass" finished-at="2023-09-22T00:50:57 IST" duration-ms="2808" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

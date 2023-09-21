@@ -113,6 +113,9 @@ public class HomePage {
 	@FindBy(xpath = "//div[text() = 'Search Flight']//parent::div")
 	private WebElement searchFlightBtn;
 	
+	@FindBy(xpath = "//div[text() = 'Destination city cannot be empty']")
+	private WebElement destinationEmptyPopupMessage;
+	
 	@FindBy(xpath = "//img[@src='https://www.spicejet.com/public/loader.gif']")
 	private WebElement loader;
 	
