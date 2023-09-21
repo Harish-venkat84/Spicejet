@@ -60,6 +60,12 @@ public class SignUpPage {
 	@FindBy(xpath = "//button[text() = 'Submit']")
 	private WebElement submitBtn;
 	
+	@FindBy(xpath = "//div[text() = 'Member account exists with given mobile number']")
+	private WebElement existingMobileNumberErrorMessage;
+	
+	@FindBy(xpath = "//div[text() = 'Member account exists with given email ID']")
+	private WebElement existingEmailIDErrorMessage;
+	
 	public SignUpPage(WebDriver driver2) {
 	
 		this.driver = driver2;

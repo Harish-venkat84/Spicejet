@@ -17,9 +17,9 @@ public class OneWayTrip extends BaseUtils{
 		
 		String takeOffCity = property.getValue(PropertyKey.takeOffCity.name());
 		
-		typeText(pom.getHomePage().getTakeOffInputField(), takeOffCity.substring(0, 3));
+		typeText(pageObjectManager.getHomePage().getTakeOffInputField(), takeOffCity.substring(0, 3));
 		
-		clickElement(pom.getHomePage().selectTakeOffCity(takeOffCity));
+		clickElement(pageObjectManager.getHomePage().selectTakeOffCity(takeOffCity));
 	}
 	
 	@When("User Select destination city from destination drop down")
@@ -27,9 +27,9 @@ public class OneWayTrip extends BaseUtils{
 		
 		String destination = property.getValue(PropertyKey.destination.name());
 		
-		typeText(pom.getHomePage().getLandingInputField(), destination.substring(0, 2));
+		typeText(pageObjectManager.getHomePage().getLandingInputField(), destination.substring(0, 2));
 		
-		clickElement(pom.getHomePage().selectTakeOffCity(destination));
+		clickElement(pageObjectManager.getHomePage().selectTakeOffCity(destination));
 		
 	}
 	
@@ -38,50 +38,50 @@ public class OneWayTrip extends BaseUtils{
 		
 		setDate();
 		
-		clickElement(pom.getHomePage().selectThisMonthCalendarDate(month, year, day));
+		clickElement(pageObjectManager.getHomePage().selectThisMonthCalendarDate(month, year, day));
 	}
 	
 	@When("Select number of passengers from the passengers drop down")
 	public void select_number_of_passengers_from_the_passengers_drop_down() {
 		
-		clickElement(pom.getHomePage().getPassengersDropDowm());
+		clickElement(pageObjectManager.getHomePage().getPassengersDropDowm());
 		
-		clickElement(pom.getHomePage().getAdultPlus());
-		clickElement(pom.getHomePage().getAdultPlus());
+		clickElement(pageObjectManager.getHomePage().getAdultPlus());
+		clickElement(pageObjectManager.getHomePage().getAdultPlus());
 
-		clickElement(pom.getHomePage().getAdultMinus());
-		clickElement(pom.getHomePage().getAdultMinus());
+		clickElement(pageObjectManager.getHomePage().getAdultMinus());
+		clickElement(pageObjectManager.getHomePage().getAdultMinus());
 		
-		clickElement(pom.getHomePage().getChildPlus());
-		clickElement(pom.getHomePage().getChildPlus());
+		clickElement(pageObjectManager.getHomePage().getChildPlus());
+		clickElement(pageObjectManager.getHomePage().getChildPlus());
 		
-		clickElement(pom.getHomePage().getChildMinus());
-		clickElement(pom.getHomePage().getChildMinus());
+		clickElement(pageObjectManager.getHomePage().getChildMinus());
+		clickElement(pageObjectManager.getHomePage().getChildMinus());
 		
 	}
 	
 	@When("User Select the currency from the currency drop down")
 	public void user_select_the_currency_from_the_currency_drop_down() {
 		
-		clickElement(pom.getHomePage().getCurrencyDropDown());
-		clickElement(pom.getHomePage().getSelectUSD());
+		clickElement(pageObjectManager.getHomePage().getCurrencyDropDown());
+		clickElement(pageObjectManager.getHomePage().getSelectUSD());
 		
-		clickElement(pom.getHomePage().getCurrencyDropDown());
-		clickElement(pom.getHomePage().getSelectINR());
+		clickElement(pageObjectManager.getHomePage().getCurrencyDropDown());
+		clickElement(pageObjectManager.getHomePage().getSelectINR());
 	}
 	
 	@When("User click the search flight button")
 	public void user_click_the_search_flight_button() {
 		
-		clickElement(pom.getHomePage().getSearchFlightBtn());
+		clickElement(pageObjectManager.getHomePage().getSearchFlightBtn());
 	}
 	
 	@Then("Validate the booking cities and Validate the number of passenger")
 	public void validate_the_booking_cities_and_validate_the_number_of_passenger() {
 
 		try {
-			String oneWay = getElementText(pom.getFlightPage().getValidateOnewWay());
-			String passenger = getElementText(pom.getFlightPage().getValidatePassenger());
+			String oneWay = getElementText(pageObjectManager.getFlightPage().getValidateOnewWay());
+			String passenger = getElementText(pageObjectManager.getFlightPage().getValidatePassenger());
 			
 			String takeOffCity = property.getValue(PropertyKey.takeOffCity.name());
 			String destination = property.getValue(PropertyKey.destination.name());

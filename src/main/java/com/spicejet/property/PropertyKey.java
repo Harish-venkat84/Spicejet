@@ -4,5 +4,5 @@ public enum PropertyKey {
 
 	mailID, password, takeOffCity, destination, dummyFirstName, dummyLastName, dummyNumber, passengerPageUrl,
 	
-	AddonURL, paymentURL, cardNumber, cardMonth, cardYear, cardCVV, errorMessageOnPayment
+	AddonURL, paymentURL, cardNumber, cardMonth, cardYear, cardCVV, errorMessageOnPayment, validMobileNumber
 }

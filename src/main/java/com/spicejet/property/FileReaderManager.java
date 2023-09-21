@@ -5,7 +5,15 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class FileReaderManager {
-
+	
+/*	This class is used to create a property file and also get the stored values.
+ *	PropertyKey Enum file created for store the property keys.
+ *		
+ *	constructor is used to load the property file.
+ *
+ *	using PropertyKey Enum keys and getValue() method we can get the values
+ */
+	
 	static Properties property;
 	
 	// this method is used for load the property file on Properties class

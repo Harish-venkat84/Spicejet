@@ -10,7 +10,7 @@ import com.spicejet.utils.BaseUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-public class CreateAccount extends BaseUtils {
+public class Signup_With_ValidCredentials extends BaseUtils {
 	
 	String currentWinID;
 	
@@ -19,7 +19,7 @@ public class CreateAccount extends BaseUtils {
 		
 		currentWinID = getCurrentWinID();
 		
-		clickElement(pom.getHomePage().getSignUpBtn());
+		clickElement(pageObjectManager.getHomePage().getSignUpBtn());
 	}
 	@Given("Switch To SignUp Tab")
 	public void switch_to_sign_up_tab() {
@@ -51,82 +51,82 @@ public class CreateAccount extends BaseUtils {
 	@Then("User Select The Title From The Title Dropdown")
 	public void user_select_the_title_from_the_title_dropdown() {
 		
-		selectVisibleText(pom.getSignUp().getSelectTitle(), "Mr");
+		selectVisibleText(pageObjectManager.getSignUp().getSelectTitle(), "Mr");
 	}
 	@Then("User Enter the First Name {string}")
 	public void user_enter_the_first_name(String firstName) {
 		
-		typeText(pom.getSignUp().getFirstName(), firstName);
+		typeText(pageObjectManager.getSignUp().getFirstName(), firstName);
 	}
 	@Then("Last Name {string}")
 	public void last_name(String lastName) {
 		
-		typeText(pom.getSignUp().getLastName(), lastName);
+		typeText(pageObjectManager.getSignUp().getLastName(), lastName);
 		
 		verticalScroll("400");
 	}
 	@Then("User Must Select Country {string} From The Country Dropdown")
 	public void user_must_select_country_from_the_country_dropdown(String country) {
 		
-		selectVisibleText(pom.getSignUp().getSelectCountry(), "Australia ");
+		selectVisibleText(pageObjectManager.getSignUp().getSelectCountry(), "Australia ");
 		
-		selectVisibleText(pom.getSignUp().getSelectCountry(), country);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectCountry(), country);
 	}
 	@Then("User Enter The Date Of Brith {string} and {string}")
 	public void user_enter_the_date_of_brith_and(String month, String year) {
 		
-		clickElement(pom.getSignUp().getDateOfBrith());
+		clickElement(pageObjectManager.getSignUp().getDateOfBrith());
 		
-		visibleOfElement(pom.getSignUp().getSelectMonth());
+		visibleOfElement(pageObjectManager.getSignUp().getSelectMonth());
 		
-		selectVisibleText(pom.getSignUp().getSelectMonth(), month);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectMonth(), month);
 		
-		selectVisibleText(pom.getSignUp().getSelectYear(), year);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectYear(), year);
 		
-		clickElement(pom.getSignUp().getSelectDate());
+		clickElement(pageObjectManager.getSignUp().getSelectDate());
 	}
 	@Then("User Enter The Mobile Number {string}")
 	public void user_enter_the_mobile_number(String mobileNumber) {
 		
-		typeText(pom.getSignUp().getMobileNumber(), mobileNumber);
+		typeText(pageObjectManager.getSignUp().getMobileNumber(), mobileNumber);
 		
-		clickElement(pom.getSignUp().getMailID());
+		clickElement(pageObjectManager.getSignUp().getMailID());
 		
-		clickElement(pom.getSignUp().getImage());
+		clickElement(pageObjectManager.getSignUp().getImage());
 		
-		elementNotVisible(pom.getSignUp().getLoading());
+		elementNotVisible(pageObjectManager.getSignUp().getLoading());
 	}
 	@Then("User Must Enter Email ID {string}")
 	public void user_must_enter_email_id(String mailid) {
 		
-		typeText(pom.getSignUp().getMailID(), mailid);
+		typeText(pageObjectManager.getSignUp().getMailID(), mailid);
 		
-		clickElement(pom.getSignUp().getPassword());
+		clickElement(pageObjectManager.getSignUp().getPassword());
 		
-		clickElement(pom.getSignUp().getImage());
+		clickElement(pageObjectManager.getSignUp().getImage());
 		
-		elementNotVisible(pom.getSignUp().getLoading());
+		elementNotVisible(pageObjectManager.getSignUp().getLoading());
 	}
 	@Then("User Must Enter Password On The Password Field {string}")
 	public void user_must_enter_password_on_the_password_field(String password) {
 		
 		
-		typeText(pom.getSignUp().getPassword(), password);
+		typeText(pageObjectManager.getSignUp().getPassword(), password);
 	}
 	@Then("User Must Eneter Confirm Passowrd {string}")
 	public void user_must_eneter_confirm_passowrd(String password) {
 		
-		typeText(pom.getSignUp().getConPassword(), password);
+		typeText(pageObjectManager.getSignUp().getConPassword(), password);
 	}
 	@Then("User Click The CheckBox I agree")
 	public void user_click_the_check_box_i_agree() {
 		
-		clickElement(pom.getSignUp().getAgreeCheckBox());
+		clickElement(pageObjectManager.getSignUp().getAgreeCheckBox());
 	}
 	@Then("User Click Submit button")
 	public void user_click_submit_button() {
 		
-		clickElement(pom.getSignUp().getSubmitBtn());
+		clickElement(pageObjectManager.getSignUp().getSubmitBtn());
 	}
 	
 }

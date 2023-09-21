@@ -17,9 +17,9 @@ public class FlightBooking extends BaseUtils{
 	@Given("Sort the flight price low to high")
 	public void sort_the_flight_price_low_to_high() {
 
-		waitForElementClickable(pom.getFlightPage().getContinueBtn());
+		waitForElementClickable(pageObjectManager.getFlightPage().getContinueBtn());
 		
-		clickElement(pom.getFlightPage().getSortPrice());
+		clickElement(pageObjectManager.getFlightPage().getSortPrice());
 		
 		verticalScroll("200");
 	}
@@ -27,16 +27,16 @@ public class FlightBooking extends BaseUtils{
 	@Given("Select the Lowest price flight")
 	public void select_the_lowest_price_flight() {
 
-//		waitForElementClickable(pom.getFlightPage().getSingleLowestPrice());
-//		clickElement(pom.getFlightPage().getSingleLowestPrice());
+//		waitForElementClickable(pageObjectManager.getFlightPage().getSingleLowestPrice());
+//		clickElement(pageObjectManager.getFlightPage().getSingleLowestPrice());
 //		
-//		waitForElementClickable(pom.getFlightPage().getContinueBtn());
+//		waitForElementClickable(pageObjectManager.getFlightPage().getContinueBtn());
 	}
 	
 	@Given("User Click the Continue button")
 	public void user_click_the_continue_button() {
 		
-		clickElement(pom.getFlightPage().getContinueBtn());
+		clickElement(pageObjectManager.getFlightPage().getContinueBtn());
 	}
 
 	@Then("Verify the page landed on the passenger infomation {string}")
@@ -44,7 +44,7 @@ public class FlightBooking extends BaseUtils{
 		
 		try { 
 			
-			Assert.assertEquals(getElementText(pom.getPassengerPage().getVerifyPassengerPage()), text);
+			Assert.assertEquals(getElementText(pageObjectManager.getPassengerPage().getVerifyPassengerPage()), text);
 			Assert.assertEquals(currentURL(), property.getValue(PropertyKey.passengerPageUrl.name()));
 
 		}catch(Exception e) {
@@ -56,19 +56,19 @@ public class FlightBooking extends BaseUtils{
 	@Then("Enter the passenger First name and Last name and also Mobile number")
 	public void enter_the_passenger_first_name_and_last_name_and_also_mobile_number() {
 		
-		clerTextUsingJavaScript(pom.getPassengerPage().getFirstName());
-		typeText(pom.getPassengerPage().getFirstName(), property.getValue(PropertyKey.dummyFirstName.name()));
+		clerTextUsingJavaScript(pageObjectManager.getPassengerPage().getFirstName());
+		typeText(pageObjectManager.getPassengerPage().getFirstName(), property.getValue(PropertyKey.dummyFirstName.name()));
 		
-		clerTextUsingJavaScript(pom.getPassengerPage().getLastName());
-		typeText(pom.getPassengerPage().getLastName(), property.getValue(PropertyKey.dummyLastName.name()));
+		clerTextUsingJavaScript(pageObjectManager.getPassengerPage().getLastName());
+		typeText(pageObjectManager.getPassengerPage().getLastName(), property.getValue(PropertyKey.dummyLastName.name()));
 		
-		clerTextUsingJavaScript(pom.getPassengerPage().getMobileNumber());
-		typeText(pom.getPassengerPage().getMobileNumber(), property.getValue(PropertyKey.dummyNumber.name()));
+		clerTextUsingJavaScript(pageObjectManager.getPassengerPage().getMobileNumber());
+		typeText(pageObjectManager.getPassengerPage().getMobileNumber(), property.getValue(PropertyKey.dummyNumber.name()));
 		
-		clerTextUsingJavaScript(pom.getPassengerPage().getEmail());
-		typeText(pom.getPassengerPage().getEmail(), property.getValue(PropertyKey.mailID.name()));
+		clerTextUsingJavaScript(pageObjectManager.getPassengerPage().getEmail());
+		typeText(pageObjectManager.getPassengerPage().getEmail(), property.getValue(PropertyKey.mailID.name()));
 		
-		List<WebElement> inputFields = pom.getPassengerPage().inputFields("1");
+		List<WebElement> inputFields = pageObjectManager.getPassengerPage().inputFields("1");
 		
 		typeText(inputFields.get(0), property.getValue(PropertyKey.dummyFirstName.name()));
 		typeText(inputFields.get(1), property.getValue(PropertyKey.dummyLastName.name()));
@@ -79,11 +79,11 @@ public class FlightBooking extends BaseUtils{
 	@Then("Click continue button")
 	public void click_continue_button() {
 		
-		clickElement(pom.getPassengerPage().getContinueBtn());
+		clickElement(pageObjectManager.getPassengerPage().getContinueBtn());
 		
-//		elementNotVisible(pom.getPassengerPage().getApp_load());
+//		elementNotVisible(pageObjectManager.getPassengerPage().getApp_load());
 		
-		waitForElementClickable(pom.getAddOnPage().getContinueBtn());
+		waitForElementClickable(pageObjectManager.getAddOnPage().getContinueBtn());
 	}
 	
 	@Then("Verify the AddOn Url")
@@ -104,13 +104,13 @@ public class FlightBooking extends BaseUtils{
 		
 		verticalScroll("300");
 		
-		clickElement(pom.getAddOnPage().getContinueBtn());
+		clickElement(pageObjectManager.getAddOnPage().getContinueBtn());
 		
-		clickElement(pom.getAddOnPage().getClickSkip());
+		clickElement(pageObjectManager.getAddOnPage().getClickSkip());
 		
-		clickElement(pom.getAddOnPage().getContinueBtn());
+		clickElement(pageObjectManager.getAddOnPage().getContinueBtn());
 		
-		elementNotVisible(pom.getAddOnPage().getApp_load());
+		elementNotVisible(pageObjectManager.getAddOnPage().getApp_load());
 	}
 	
 	@Then("Validate the Payment URL")
@@ -128,64 +128,64 @@ public class FlightBooking extends BaseUtils{
 	@When("User enter the card number on the input field")
 	public void user_enter_the_card_number_on_the_input_field() {
 		
-		visibleOfElement(pom.getPaymentPage().getCardNumberFrame());
+		visibleOfElement(pageObjectManager.getPaymentPage().getCardNumberFrame());
 		
-		switchToFrame(pom.getPaymentPage().getCardNumberFrame());
-		typeText(pom.getPaymentPage().getCardNumber(), property.getValue(PropertyKey.cardNumber.name()));
+		switchToFrame(pageObjectManager.getPaymentPage().getCardNumberFrame());
+		typeText(pageObjectManager.getPaymentPage().getCardNumber(), property.getValue(PropertyKey.cardNumber.name()));
 		switchToDefaultContent();
 	}
 	
 	@When("User type the card holder name in input field")
 	public void user_type_the_card_holder_name_in_input_field() {
 		
-		switchToFrame(pom.getPaymentPage().getCardNameFrame());
-		typeText(pom.getPaymentPage().getCardName(), property.getValue(PropertyKey.dummyFirstName.name()));
+		switchToFrame(pageObjectManager.getPaymentPage().getCardNameFrame());
+		typeText(pageObjectManager.getPaymentPage().getCardName(), property.getValue(PropertyKey.dummyFirstName.name()));
 		switchToDefaultContent();
 	}
 	
 	@When("User enter expiry month in the input field")
 	public void user_enter_expiry_month_in_the_input_field() {
 		
-		switchToFrame(pom.getPaymentPage().getCardMonthFrame());
-		typeText(pom.getPaymentPage().getCardExMonth(), property.getValue(PropertyKey.cardMonth.name()));
+		switchToFrame(pageObjectManager.getPaymentPage().getCardMonthFrame());
+		typeText(pageObjectManager.getPaymentPage().getCardExMonth(), property.getValue(PropertyKey.cardMonth.name()));
 		switchToDefaultContent();
 	}
 
 	@When("enter the expiry year in the year input field")
 	public void enter_the_expiry_year_in_the_year_input_field() {
 		
-		switchToFrame(pom.getPaymentPage().getCardYearFrame());
-		typeText(pom.getPaymentPage().getCardExYear(), property.getValue(PropertyKey.cardYear.name()));
+		switchToFrame(pageObjectManager.getPaymentPage().getCardYearFrame());
+		typeText(pageObjectManager.getPaymentPage().getCardExYear(), property.getValue(PropertyKey.cardYear.name()));
 		switchToDefaultContent();
 	}
 	
 	@When("User type the card CVV in the input field")
 	public void user_type_the_card_cvv_in_the_input_field() {
 		
-		switchToFrame(pom.getPaymentPage().getCardCVVFrame());
-		typeText(pom.getPaymentPage().getCardCVV(), property.getValue(PropertyKey.cardCVV.name()));
+		switchToFrame(pageObjectManager.getPaymentPage().getCardCVVFrame());
+		typeText(pageObjectManager.getPaymentPage().getCardCVV(), property.getValue(PropertyKey.cardCVV.name()));
 		switchToDefaultContent();
 	}
 	
 	@When("click proceed to pay button")
 	public void click_proceed_to_pay_button() {
 		
-		clickElement(pom.getPaymentPage().getProceedToPayBtn());
+		clickElement(pageObjectManager.getPaymentPage().getProceedToPayBtn());
 	}
 	@Then("validate payment message")
 	public void validate_payment_message() {
 		
 		try {
 			
-//			waitTextPresent(pom.getPaymentPage().getErrorMessage(), property.getValue(PropertyKey.errorMessageOnPayment.name()));
+//			waitTextPresent(pageObjectManager.getPaymentPage().getErrorMessage(), property.getValue(PropertyKey.errorMessageOnPayment.name()));
 
-			String text = getElementText(pom.getPaymentPage().getErrorMessage());
+			String text = getElementText(pageObjectManager.getPaymentPage().getErrorMessage());
 			
 			Assert.assertEquals(text, property.getValue(PropertyKey.errorMessageOnPayment.name()));
 			
-			clickElement(pom.getPaymentPage().getErrorDismissBtn());
+			clickElement(pageObjectManager.getPaymentPage().getErrorDismissBtn());
 			
-			String message = getElementText(pom.getPaymentPage().getPaymentMessage());
+			String message = getElementText(pageObjectManager.getPaymentPage().getPaymentMessage());
 			
 			if (message.equals("Payment Failure")) {
 				

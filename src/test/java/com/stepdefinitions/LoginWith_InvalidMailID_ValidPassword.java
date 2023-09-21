@@ -11,35 +11,23 @@ import io.cucumber.java.en.When;
 
 public class LoginWith_InvalidMailID_ValidPassword extends BaseUtils{
 
-	@Given("User click login button in the Homepage")
-	public void user_click_login_button_in_the_homepage() {
-		
-		clickElement(pom.getHomePage().getHomePageLoginBtn());
-	}
-	
-	@Given("user Should click the Email Radio button")
-	public void user_should_click_the_email_radio_button() {
-		
-		clickElement(pom.getHomePage().getEmailRadioBtn());
-	}
-	
 	@Given("user enter the Invalid email id {string}")
 	public void user_enter_the_invalid_email_id(String invalidEmail) {
 		
-		typeText(pom.getHomePage().getEmailID(), invalidEmail);
+		typeText(pageObjectManager.getHomePage().getEmailID(), invalidEmail);
 	}
 	
 	
 	@When("user must enter the valid password")
 	public void user_must_enter_the_valid_password() {
 		
-		typeText(pom.getHomePage().getPassword(), property.getValue(PropertyKey.password.name()));
+		typeText(pageObjectManager.getHomePage().getPassword(), property.getValue(PropertyKey.password.name()));
 	}
 	
 	@When("user Should click the login button")
 	public void user_should_click_the_login_button() {
 		
-		clickElement(pom.getHomePage().getLoginBtn());
+		clickElement(pageObjectManager.getHomePage().getLoginBtn());
 	}
 	
 	@Then("Verifying the error message {string}")
@@ -47,7 +35,7 @@ public class LoginWith_InvalidMailID_ValidPassword extends BaseUtils{
 		
 		try {
 			
-			String invalidEmailError = getElementText(pom.getHomePage().getInvalidEmailAddress());
+			String invalidEmailError = getElementText(pageObjectManager.getHomePage().getInvalidEmailAddress());
 			
 			Assert.assertEquals(invalidEmailError, errorMessage);
 			

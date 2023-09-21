@@ -28,8 +28,9 @@ import com.spicejet.property.FileReaderManager;
 public class BaseUtils {
 
 	public static WebDriver driver;
-	
-	public static PageObjectManager pom;
+
+	// Page Object Manager class object reference 
+	public static PageObjectManager pageObjectManager;
 	
 	public static FileReaderManager property = new FileReaderManager();
 	
@@ -74,7 +75,7 @@ public class BaseUtils {
 		
 		driver.get(url);
 		
-		pom = new PageObjectManager(driver);
+		pageObjectManager = new PageObjectManager(driver);
 		
 		}catch(Exception ex) {
 			

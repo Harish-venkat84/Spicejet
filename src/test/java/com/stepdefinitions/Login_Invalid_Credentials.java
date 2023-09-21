@@ -9,38 +9,28 @@ import io.cucumber.java.en.Then;
 
 public class Login_Invalid_Credentials extends BaseUtils{
 
-	@Given("user click login button in the Homepage")
-	public void user_click_login_button_in_the_homepage() {
-		
-		clickElement(pom.getHomePage().getHomePageLoginBtn());
-	}
-	@Given("user click the email radio button")
-	public void user_click_the_email_radio_button() {
-		
-		clickElement(pom.getHomePage().getEmailRadioBtn());
-	}
 	@Given("user enter the invalid email id {string}")
 	public void user_enter_the_invalid_email_id(String email) {
 		
-		typeText(pom.getHomePage().getEmailID(), email);
+		typeText(pageObjectManager.getHomePage().getEmailID(), email);
 	}
 	@Given("user enter the invalid password {string}")
 	public void user_enter_the_invalid_password(String password) {
 	
-		typeText(pom.getHomePage().getPassword(), password);
+		typeText(pageObjectManager.getHomePage().getPassword(), password);
 	}
 	@Given("user click the login button")
 	public void user_click_the_login_button() {
 	
-		clickElement(pom.getHomePage().getLoginBtn());
+		clickElement(pageObjectManager.getHomePage().getLoginBtn());
 	}
 	@Then("verify the error message {string} and {string}")
 	public void verify_the_error_message_and(String message1, String message2) {
 	
-		visibleOfElement(pom.getHomePage().getErrorMessage1());
+		visibleOfElement(pageObjectManager.getHomePage().getErrorMessage1());
 		
-		String error1 = getElementText(pom.getHomePage().getErrorMessage1());
-		String error2 = getElementText(pom.getHomePage().getErrorMessage2());
+		String error1 = getElementText(pageObjectManager.getHomePage().getErrorMessage1());
+		String error2 = getElementText(pageObjectManager.getHomePage().getErrorMessage2());
 		
 		try {
 		
@@ -52,6 +42,6 @@ public class Login_Invalid_Credentials extends BaseUtils{
 			System.out.println("problem on assert equal on login error message" +className());
 			e.printStackTrace();
 		}
-		clickElement(pom.getHomePage().getErrorMessageDismissBtn());
+		clickElement(pageObjectManager.getHomePage().getErrorMessageDismissBtn());
 	}
 }

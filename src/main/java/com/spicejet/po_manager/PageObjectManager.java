@@ -11,6 +11,10 @@ import com.spicejet.po_models.SignUpPage;
 
 public class PageObjectManager {
 	
+	/*
+	 * This class used to create the Object reference for the Page Object Model classes 	
+	 */
+	
 	public WebDriver driver;
 	
 	private HomePage homepage;

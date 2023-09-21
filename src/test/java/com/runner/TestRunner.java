@@ -19,7 +19,7 @@ import io.cucumber.testng.CucumberOptions;
 					        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 					},
 
-					tags = ("@loginWith_InvalidMailID_ValidPassword")
+					tags = ("@SignUp_With_Existing_MobileNumber_EmailID")
 				)
 
 
