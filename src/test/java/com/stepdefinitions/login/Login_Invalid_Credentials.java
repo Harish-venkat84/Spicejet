@@ -1,4 +1,4 @@
-package com.stepdefinitions;
+package com.stepdefinitions.login;
 
 import org.testng.Assert;
 

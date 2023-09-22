@@ -1,4 +1,4 @@
-package com.stepdefinitions;
+package com.stepdefinitions.signup;
 
 
 import java.util.Set;
