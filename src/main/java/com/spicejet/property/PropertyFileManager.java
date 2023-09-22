@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class FileReaderManager {
+public class PropertyFileManager {
 	
 /*	This class is used to create a property file and also get the stored values.
  *	PropertyKey Enum file created for store the property keys.
@@ -17,7 +17,7 @@ public class FileReaderManager {
 	static Properties property;
 	
 	// this method is used for load the property file on Properties class
-	public FileReaderManager() {
+	public PropertyFileManager() {
 		try {
 
 			String path = System.getProperty("user.dir") + "\\Property\\Spicejet.properties";

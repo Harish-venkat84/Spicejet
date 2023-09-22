@@ -60,6 +60,9 @@ public class SignUpPage {
 	@FindBy(xpath = "//button[text() = 'Submit']")
 	private WebElement submitBtn;
 	
+	@FindBy(xpath = "//label[text() = 'OTP Verification']")
+	private WebElement OTPVerification_popup;
+	
 	@FindBy(xpath = "//div[text() = 'Member account exists with given mobile number']")
 	private WebElement existingMobileNumberErrorMessage;
 	

@@ -1,6 +1,7 @@
 Feature: Validating Longin Functionality
 
   Background: Open Login Left Side Bar
+  	# These two steps placed under the Login_ValidCredentials class
     Given User must click Login button on the HomePage
     And User Click the login with Email Radio button
 

@@ -10,38 +10,6 @@ import io.cucumber.java.en.Then;
 
 public class Signup_With_Existing_MobileNumber_EmailID extends BaseUtils{
 	
-	// Scenario: Validating without Entering any Credentials Clicking Sibmit button
-	
-	@Given("User just Click the Submit button")
-	public void user_just_click_the_submit_button() {
-		
-		verticalScroll("400");
-		
-		visibleOfElement(pageObjectManager.getSignUp().getSubmitBtn());
-	
-		clickElementUsingJavaScript(pageObjectManager.getSignUp().getSubmitBtn());
-	}
-	
-	@Then("Validate the fill all mandatory fields message shown to user {string}")
-	public void validate_the_fill_all_mandatory_fields_message_shown_to_user(String actualMessage) {
-	
-		try {
-			
-			verticalScroll("-400");
-			
-			String message = getElementText(pageObjectManager.getSignUp().getFillAllMandatoryErrorMessage());
-			
-			System.out.println(message);
-			
-			Assert.assertEquals(message, actualMessage);
-			
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-		
-	}
-	
 	
 	// Scenario Outline: Validating SignUp With Existing Account Mobile Number and Email ID
 
@@ -150,5 +118,38 @@ public class Signup_With_Existing_MobileNumber_EmailID extends BaseUtils{
 	public void user_must_click_submit_button() {
 		
 		clickElement(pageObjectManager.getSignUp().getSubmitBtn());
+	}
+	
+	
+	// Scenario: Validating without Entering any Credentials Clicking Sibmit button
+	
+	@Given("User just Click the Submit button")
+	public void user_just_click_the_submit_button() {
+		
+		verticalScroll("400");
+		
+		visibleOfElement(pageObjectManager.getSignUp().getSubmitBtn());
+	
+		clickElementUsingJavaScript(pageObjectManager.getSignUp().getSubmitBtn());
+	}
+	
+	@Then("Validate the fill all mandatory fields message shown to user {string}")
+	public void validate_the_fill_all_mandatory_fields_message_shown_to_user(String actualMessage) {
+	
+		try {
+			
+			verticalScroll("-400");
+			
+			String message = getElementText(pageObjectManager.getSignUp().getFillAllMandatoryErrorMessage());
+			
+			System.out.println(message);
+			
+			Assert.assertEquals(message, actualMessage);
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		
 	}
 }

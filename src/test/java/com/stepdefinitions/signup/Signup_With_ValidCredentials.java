@@ -1,6 +1,5 @@
 package com.stepdefinitions.signup;
 
-
 import java.util.Set;
 
 import org.testng.Assert;
@@ -9,6 +8,7 @@ import com.spicejet.utils.BaseUtils;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class Signup_With_ValidCredentials extends BaseUtils {
 	
@@ -53,42 +53,45 @@ public class Signup_With_ValidCredentials extends BaseUtils {
 		
 		selectVisibleText(pageObjectManager.getSignUp().getSelectTitle(), "Mr");
 	}
-	@Then("User Enter the First Name {string}")
-	public void user_enter_the_first_name(String firstName) {
+	
+	@When("User Enter the First Name")
+	public void user_enter_the_first_name() {
 		
-		typeText(pageObjectManager.getSignUp().getFirstName(), firstName);
+		typeText(pageObjectManager.getSignUp().getFirstName(), excelReader.getValueFromExcel(1,1));
 	}
-	@Then("Last Name {string}")
-	public void last_name(String lastName) {
+	
+	@When("Enter the Last Name")
+	public void enter_the_last_name() {
 		
-		typeText(pageObjectManager.getSignUp().getLastName(), lastName);
+		typeText(pageObjectManager.getSignUp().getLastName(), excelReader.getValueFromExcel(2,1));
 		
 		verticalScroll("400");
 	}
-	@Then("User Must Select Country {string} From The Country Dropdown")
-	public void user_must_select_country_from_the_country_dropdown(String country) {
+	
+	@When("User Must Select Country From The Country Dropdown")
+	public void user_must_select_country_from_the_country_dropdown() {
 		
 		selectVisibleText(pageObjectManager.getSignUp().getSelectCountry(), "Australia ");
 		
-		selectVisibleText(pageObjectManager.getSignUp().getSelectCountry(), country);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectCountry(), excelReader.getValueFromExcel(3,1));
 	}
-	@Then("User Enter The Date Of Brith {string} and {string}")
-	public void user_enter_the_date_of_brith_and(String month, String year) {
+	@When("User Select The Date Of Brith")
+	public void user_select_the_date_of_brith() {
 		
 		clickElement(pageObjectManager.getSignUp().getDateOfBrith());
 		
 		visibleOfElement(pageObjectManager.getSignUp().getSelectMonth());
 		
-		selectVisibleText(pageObjectManager.getSignUp().getSelectMonth(), month);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectMonth(), excelReader.getValueFromExcel(4,1));
 		
-		selectVisibleText(pageObjectManager.getSignUp().getSelectYear(), year);
+		selectVisibleText(pageObjectManager.getSignUp().getSelectYear(), excelReader.getValueFromExcel(5,1).substring(0, 4));
 		
 		clickElement(pageObjectManager.getSignUp().getSelectDate());
 	}
-	@Then("User Enter The Mobile Number {string}")
-	public void user_enter_the_mobile_number(String mobileNumber) {
+	@When("User Enter The Mobile Number")
+	public void user_enter_the_mobile_number() {
 		
-		typeText(pageObjectManager.getSignUp().getMobileNumber(), mobileNumber);
+		typeText(pageObjectManager.getSignUp().getMobileNumber(), excelReader.getValueFromExcel(6,1));
 		
 		clickElement(pageObjectManager.getSignUp().getMailID());
 		
@@ -96,10 +99,10 @@ public class Signup_With_ValidCredentials extends BaseUtils {
 		
 		elementNotVisible(pageObjectManager.getSignUp().getLoading());
 	}
-	@Then("User Must Enter Email ID {string}")
-	public void user_must_enter_email_id(String mailid) {
+	@When("User Must Enter Email ID")
+	public void user_must_enter_email_id() {
 		
-		typeText(pageObjectManager.getSignUp().getMailID(), mailid);
+		typeText(pageObjectManager.getSignUp().getMailID(), excelReader.getValueFromExcel(7,1));
 		
 		clickElement(pageObjectManager.getSignUp().getPassword());
 		
@@ -107,16 +110,16 @@ public class Signup_With_ValidCredentials extends BaseUtils {
 		
 		elementNotVisible(pageObjectManager.getSignUp().getLoading());
 	}
-	@Then("User Must Enter Password On The Password Field {string}")
-	public void user_must_enter_password_on_the_password_field(String password) {
+	@When("User Must Enter Password On The Password Field")
+	public void user_must_enter_password_on_the_password_field() {
 		
 		
-		typeText(pageObjectManager.getSignUp().getPassword(), password);
+		typeText(pageObjectManager.getSignUp().getPassword(), excelReader.getValueFromExcel(8,1));
 	}
-	@Then("User Must Eneter Confirm Passowrd {string}")
-	public void user_must_eneter_confirm_passowrd(String password) {
+	@When("User Must Eneter Confirm Passowrd")
+	public void user_must_eneter_confirm_passowrd() {
 		
-		typeText(pageObjectManager.getSignUp().getConPassword(), password);
+		typeText(pageObjectManager.getSignUp().getConPassword(), excelReader.getValueFromExcel(8,1));
 	}
 	@Then("User Click The CheckBox I agree")
 	public void user_click_the_check_box_i_agree() {
@@ -129,4 +132,11 @@ public class Signup_With_ValidCredentials extends BaseUtils {
 		clickElement(pageObjectManager.getSignUp().getSubmitBtn());
 	}
 	
+	@Then("Validate OTP Verification popup Feild Shown to User {string}")
+	public void validate_otp_verification_popup_feild_shown_to_user(String actual_OTP_Text) {
+
+		String optVerifiaction = getElementText(pageObjectManager.getSignUp().getOTPVerification_popup());
+		
+		Assert.assertEquals(optVerifiaction, actual_OTP_Text);
+	}
 }

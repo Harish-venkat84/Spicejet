@@ -22,17 +22,24 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.spicejet.excel_reader.ExcelFileReader;
 import com.spicejet.po_manager.PageObjectManager;
-import com.spicejet.property.FileReaderManager;
+import com.spicejet.property.PropertyFileManager;
 
 public class BaseUtils {
 
+	// Some classes will extend this BaseUtils class, so I have created some commonly used class objects here. 
+	
 	public static WebDriver driver;
 
 	// Page Object Manager class object reference 
 	public static PageObjectManager pageObjectManager;
 	
-	public static FileReaderManager property = new FileReaderManager();
+	// Property file reader class object
+	public static PropertyFileManager property = new PropertyFileManager();
+	
+	// Excel file reader class object
+	public static ExcelFileReader excelReader = new ExcelFileReader();
 	
 	static ChromeOptions option = new ChromeOptions();
 	

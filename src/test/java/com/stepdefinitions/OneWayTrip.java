@@ -12,30 +12,6 @@ import io.cucumber.java.en.When;
 
 public class OneWayTrip extends BaseUtils{
 	
-	// Scenario: Validating without Entering any details Clicking Search Flight
-	
-	@Given("User click the Search Filght button")
-	public void user_click_the_search_filght_button() {
-		
-		clickElement(pageObjectManager.getHomePage().getSearchFlightBtn());
-	}
-	
-	@Then("Validate Popup Message {string}")
-	public void validate_popup_message(String actualMessage) {
-		
-		try {
-
-			String popupMessage = getElementText(pageObjectManager.getHomePage().getDestinationEmptyPopupMessage());
-			
-			Assert.assertEquals(popupMessage, actualMessage);
-			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		
-	}
-	
 	
 	// Scenario: Validating One way with Valid Credentials
 
@@ -122,4 +98,29 @@ public class OneWayTrip extends BaseUtils{
 			e.printStackTrace();
 		}
 	}
+	
+	
+	// Scenario: Validating without Entering any details Clicking Search Flight
+	
+		@Given("User click the Search Filght button")
+		public void user_click_the_search_filght_button() {
+			
+			clickElement(pageObjectManager.getHomePage().getSearchFlightBtn());
+		}
+		
+		@Then("Validate Popup Message {string}")
+		public void validate_popup_message(String actualMessage) {
+			
+			try {
+
+				String popupMessage = getElementText(pageObjectManager.getHomePage().getDestinationEmptyPopupMessage());
+				
+				Assert.assertEquals(popupMessage, actualMessage);
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+		}
 }

@@ -7,28 +7,19 @@ Feature: SignUp Functionality
     Then Validate SignUp Page Title
     And User Select The Title From The Title Dropdown
 
-  @signup_Without_Entering_Credentials
-  Scenario: Validating without Entering any Credentials Clicking Sibmit button
-    # These two steps added in the Signup_With_Existing_MobileNumber_EmailID class
-    Given User just Click the Submit button
-    Then Validate the fill all mandatory fields message shown to user "Please fill all mandatory fields marked with an '*' to proceed"
-
   @SignUpValidCredentials
-  Scenario Outline: Validating SignUp With Valid Credentials
-    Given User Enter the First Name <firstName>
-    And Last Name <lastName>
-    And User Must Select Country <country> From The Country Dropdown
-    And User Enter The Date Of Brith <month> and <year>
-    And User Enter The Mobile Number <mobileNumber>
-    And User Must Enter Email ID <mailID>
-    And User Must Enter Password On The Password Field <password>
-    And User Must Eneter Confirm Passowrd <password>
+  Scenario: Validating SignUp With Valid Credentials
+    When User Enter the First Name
+    And Enter the Last Name
+    And User Must Select Country From The Country Dropdown
+    And User Select The Date Of Brith
+    And User Enter The Mobile Number
+    And User Must Enter Email ID
+    And User Must Enter Password On The Password Field
+    And User Must Eneter Confirm Passowrd
     And User Click The CheckBox I agree
     And User Click Submit button
-
-    Examples: 
-      | firstName | lastName | country  | month | year   | mobileNumber | mailID                  | password       |
-      | "Harish"  | "V"      | "India " | "May" | "1999" | "8807889564" | "harishvenkat@test.com" | "Harish@vent8" |
+    Then Validate OTP Verification popup Feild Shown to User "OTP Verification"
 
   @SignUp_With_Existing_MobileNumber_EmailID
   Scenario Outline: Validating SignUp With Existing Account Mobile Number and Email ID
@@ -47,3 +38,9 @@ Feature: SignUp Functionality
     Examples: 
       | firstName | lastName | month | year   | password       |
       | "Harish"  | "V"      | "May" | "1999" | "Harish@vent8" |
+
+  @signup_Without_Entering_Credentials
+  Scenario: Validating without Entering any Credentials Clicking Sibmit button
+    # These two steps added in the Signup_With_Existing_MobileNumber_EmailID class
+    Given User just Click the Submit button
+    Then Validate the fill all mandatory fields message shown to user "Please fill all mandatory fields marked with an '*' to proceed"
