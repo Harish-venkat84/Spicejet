@@ -1,5 +1,7 @@
 package com.stepdefinitions.login;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import com.spicejet.utils.BaseUtils;
@@ -9,6 +11,8 @@ import io.cucumber.java.en.Then;
 
 public class Login_Invalid_Credentials extends BaseUtils{
 
+	Logger logger = LogManager.getLogger(Login_Invalid_Credentials.class.getName());
+	
 	@Given("user enter the invalid email id {string}")
 	public void user_enter_the_invalid_email_id(String email) {
 		
@@ -37,11 +41,11 @@ public class Login_Invalid_Credentials extends BaseUtils{
 			Assert.assertEquals(message1, error1);
 			Assert.assertEquals(message2, error2);
 		
-		}catch(Exception e) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on assert equal on login error message" +className());
-			e.printStackTrace();
+			logger.error("problem on assert equal on login error message" + exceptionClassNameAndMessage(exception));
 		}
+		
 		clickElement(pageObjectManager.getHomePage().getErrorMessageDismissBtn());
 	}
 }

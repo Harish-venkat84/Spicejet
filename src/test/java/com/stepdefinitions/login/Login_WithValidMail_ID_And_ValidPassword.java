@@ -1,5 +1,7 @@
 package com.stepdefinitions.login;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import com.spicejet.property.PropertyKey;
@@ -10,6 +12,8 @@ import io.cucumber.java.en.Then;
 
 public class Login_WithValidMail_ID_And_ValidPassword extends BaseUtils{
 
+	Logger logger = LogManager.getLogger(Login_WithValidMail_ID_And_ValidPassword.class.getName());
+	
 	@Given("user enter the valid email id")
 	public void user_enter_the_valid_email_id() {
 	
@@ -41,10 +45,9 @@ public class Login_WithValidMail_ID_And_ValidPassword extends BaseUtils{
 			Assert.assertEquals(errorMessage1, error1);
 			Assert.assertEquals(errorMessage2, error2);
 		
-		}catch(Exception e) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on assert equal on login error message" +className());
-			e.printStackTrace();
+			logger.error("problem on assert equal on login error message" + exceptionClassNameAndMessage(exception));
 		}
 		clickElement(pageObjectManager.getHomePage().getErrorMessageDismissBtn());
 	}

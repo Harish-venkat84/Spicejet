@@ -2,6 +2,8 @@ package com.stepdefinitions;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -13,6 +15,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class FlightBooking extends BaseUtils{
+	
+	Logger logger = LogManager.getLogger(FlightBooking.class.getName());
+
 	
 	@Given("Sort the flight price low to high")
 	public void sort_the_flight_price_low_to_high() {
@@ -47,9 +52,10 @@ public class FlightBooking extends BaseUtils{
 			Assert.assertEquals(getElementText(pageObjectManager.getPassengerPage().getVerifyPassengerPage()), text);
 			Assert.assertEquals(currentURL(), property.getValue(PropertyKey.passengerPageUrl.name()));
 
-		}catch(Exception e) {
-			System.out.println("problem on passenger page Asserting the URL and text");
-			e.printStackTrace();
+		}catch(Exception exception) {
+			
+			logger.error("problem on passenger page Asserting the URL and text | "
+			+ exception.getMessage() +" | " +exception.getStackTrace()[0] );
 		}
 	}
 
@@ -92,10 +98,10 @@ public class FlightBooking extends BaseUtils{
 		try {
 			Assert.assertEquals(currentURL(), property.getValue(PropertyKey.AddonURL.name()));
 			
-		}catch(Exception e) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on AddOn page getting Current URL");
-			e.printStackTrace();
+			logger.error("problem on AddOn page getting Current URL | "
+					+ exception.getMessage() +" | " +exception.getStackTrace()[0] );
 		}
 	}
 	
@@ -116,13 +122,15 @@ public class FlightBooking extends BaseUtils{
 	@Then("Validate the Payment URL")
 	public void validate_the_payment_url() {
 		
-		try { Assert.assertEquals(currentURL(), property.getValue(PropertyKey.paymentURL.name())); }catch(Exception ex) {
+		try { 
 			
-			System.out.println("problem on getting payment URL");
-			ex.printStackTrace();
+			Assert.assertEquals(currentURL(), property.getValue(PropertyKey.paymentURL.name())); 
+			
+		}catch(Exception exception) {
+			
+			logger.error("problem on getting payment URL | "
+					+ exception.getMessage() +" | " +exception.getStackTrace()[0] );
 		}
-		
-		
 	}
 	
 	@When("User enter the card number on the input field")
@@ -196,9 +204,9 @@ public class FlightBooking extends BaseUtils{
 				System.out.println("Payment successful");
 			}
 			
-		}catch(Exception ex) {
+		}catch(Exception exception) {
 			
-			System.out.println();
+			exception.printStackTrace();
 		}
 	}
 }

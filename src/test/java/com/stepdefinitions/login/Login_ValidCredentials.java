@@ -1,5 +1,7 @@
 package com.stepdefinitions.login;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import com.spicejet.property.PropertyKey;
@@ -9,6 +11,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class Login_ValidCredentials extends BaseUtils{
+	
+	Logger logger = LogManager.getLogger(Login_ValidCredentials.class.getName());
 
 	@Given("User must click Login button on the HomePage")
 	public void user_must_click_login_button_on_the_home_page() {
@@ -50,10 +54,9 @@ public class Login_ValidCredentials extends BaseUtils{
 		
 		String profileName = getElementText(pageObjectManager.getHomePage().getProfileName());
 		
-		try { Assert.assertEquals(profile_Name, profileName); } catch(Exception e) {
+		try { Assert.assertEquals(profile_Name, profileName); } catch(Exception exception) {
 			
-			System.out.println("problem on assert equal on profile name in " +className());
-			e.printStackTrace();
+			logger.error("problem on assert equal on profile name" + exceptionClassNameAndMessage(exception));
 		}
 	}
 }

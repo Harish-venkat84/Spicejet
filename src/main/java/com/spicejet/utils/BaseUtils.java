@@ -7,6 +7,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -26,11 +28,14 @@ import com.spicejet.excel_reader.ExcelFileReader;
 import com.spicejet.po_manager.PageObjectManager;
 import com.spicejet.property.PropertyFileManager;
 
+	// Some classes will extend this BaseUtils class, so I have created some commonly used class objects here. 
+
 public class BaseUtils {
 
-	// Some classes will extend this BaseUtils class, so I have created some commonly used class objects here. 
-	
 	public static WebDriver driver;
+	
+	// Log4f2 object creation 
+	static Logger logger = LogManager.getLogger(BaseUtils.class.getName());
 
 	// Page Object Manager class object reference 
 	public static PageObjectManager pageObjectManager;
@@ -44,9 +49,11 @@ public class BaseUtils {
 	static ChromeOptions option = new ChromeOptions();
 	
 	// return the class name as a string
-	public String className() {
+	public String exceptionClassNameAndMessage(Exception exceptionObj) {
 		
-		return this.getClass().getSimpleName() + " class, ";
+		return " | Default error message --> "+exceptionObj.getMessage() 
+		+ " | Method implementation class --> "+exceptionObj.getStackTrace()[0] 
+		+ " | Method extends class --> "+exceptionObj.getStackTrace()[1];
 	}
 	
 	// this method is user for browser launch
@@ -84,10 +91,12 @@ public class BaseUtils {
 		
 		pageObjectManager = new PageObjectManager(driver);
 		
-		}catch(Exception ex) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on launching browser");
-			ex.printStackTrace();
+			logger.error("problem on launching browser" 
+			+ " | Default error message --> "+exception.getMessage() 
+			+ " | Method implementation class --> "+exception.getStackTrace()[0] 
+			+ " | Method extends class --> "+exception.getStackTrace()[1]);
 		}
 		
 		return driver;
@@ -97,10 +106,9 @@ public class BaseUtils {
 	// parameters => (element, text)
 	public void typeText(WebElement element,String text) {
 
-		try { element.sendKeys(text); }catch(Exception ex) {
+		try { element.sendKeys(text); }catch(Exception exception) {
 			
-			System.out.println("problem in passing text to the webelement on " + className() + "typeText method");
-			ex.printStackTrace();
+			logger.error("problem in passing text to the webelement" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -108,33 +116,30 @@ public class BaseUtils {
 	// parameter(web element) 
 	public void clickElement(WebElement element) {
 		
-		try { element.click(); }catch (Exception ex) {
+		try { element.click(); }catch (Exception exception) {
 			
-			System.out.println("problem in clicking button " + className() + "clickElement method");
-			
-			ex.printStackTrace();
+			logger.error("problem in clicking element -->" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
 	// closes all opened browsers
 	public static void closeAllBrowsers() {
 		
-		try { driver.quit(); }catch(Exception ex) {
-			
-			System.out.println("problem in closing the all browsers");
-			
-			ex.printStackTrace();
+		try { driver.quit(); }catch(Exception exception) {
+
+			logger.error("problem in closing the all browsers"
+			+ " | Default error message --> "+exception.getMessage() 
+			+ " | Method implementation class --> "+exception.getStackTrace()[0] 
+			+ " | Method extends class --> "+exception.getStackTrace()[1]);
 		}
 	}
 	
 	// close the current browser or tab
 	public void closeCurrentBrowser() {
 		
-		try { driver.close(); }catch(Exception ex) {
-			
-			System.out.println("problem in closing the current browser tab on " + className() + "closeCurrentBrowser method");
-			
-			ex.printStackTrace();
+		try { driver.close(); }catch(Exception exception) {
+
+			logger.error("problem in closing the current browser tab" +exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -142,11 +147,10 @@ public class BaseUtils {
 	// parameter => element
 	public void clearText(WebElement element) {
 		
-		try { element.clear(); }catch(Exception ex) {
+		try { element.clear(); }catch(Exception exception) {
 			
-			System.out.println("problem in clearing text on " + className() + "clearText method");
+			logger.error("problem in clearing text" + exceptionClassNameAndMessage(exception));
 			
-			ex.printStackTrace();
 		}
 	}
 	
@@ -162,10 +166,9 @@ public class BaseUtils {
 	// parameter => element
 	public void visibleOfElement(WebElement element){
 
-		try{ waitForMe(10).until(ExpectedConditions.visibilityOf(element)); }catch (Exception ex){
+		try{ waitForMe(10).until(ExpectedConditions.visibilityOf(element)); }catch (Exception exception){
 
-			System.out.println("problem in web driver wait on "+ className() +"visibleOfElement method");
-			ex.printStackTrace();
+			logger.error("problem in web driver wait for visible of element" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -173,10 +176,9 @@ public class BaseUtils {
 	// parameter => X_path
 	public void presenceOfElement(String path) {
 		
-		try{ waitForMe(10).until(ExpectedConditions.presenceOfElementLocated(By.xpath(path))); }catch(Exception e) {
+		try{ waitForMe(10).until(ExpectedConditions.presenceOfElementLocated(By.xpath(path))); }catch(Exception exception) {
 			
-			System.out.println("problem in web driver wait on "+ className() +"presenceOfElement method");
-			e.printStackTrace();
+			logger.error("problem in web driver wait for presence of element" + exceptionClassNameAndMessage(exception));
 		} 
 	}
 	
@@ -184,10 +186,9 @@ public class BaseUtils {
 	// parameter => element
 	public void elementNotVisible(WebElement element) {
 		
-		try { waitForMe(10).until(ExpectedConditions.invisibilityOfAllElements(element)); } catch (Exception e) {
+		try { waitForMe(10).until(ExpectedConditions.invisibilityOfAllElements(element)); } catch (Exception exception) {
 			
-			System.out.println("problem in web driver wait on "+ className() +"visibleOfElement method");
-			e.printStackTrace();
+			logger.error("problem in web driver wait" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -195,11 +196,9 @@ public class BaseUtils {
 	// parameter => title as String
 	public void waitForGetTitle(String title) {
 		
-		try { waitForMe(10).until(ExpectedConditions.titleContains(title)); }catch(Exception ex) {
+		try { waitForMe(10).until(ExpectedConditions.titleContains(title)); }catch(Exception exception) {
 			
-			System.out.println("problem on waiting for get titile on" +className()+ "waitForGetTitle method");
-			
-			ex.printStackTrace();
+			logger.error("problem on waiting for get titile" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -207,10 +206,9 @@ public class BaseUtils {
 	// parameter => WebElement
 	public void waitForElementClickable(WebElement element) {
 		
-		try { waitForMe(10).until(ExpectedConditions.elementToBeClickable(element)); }catch(Exception e) {
+		try { waitForMe(10).until(ExpectedConditions.elementToBeClickable(element)); }catch(Exception exception) {
 			
-			System.out.println("problem on waiting for element to be clickable "+className()+ "waitForElementClickable method");
-			e.printStackTrace();
+			logger.error("problem on waiting for element to be clickable " + exceptionClassNameAndMessage(exception));
 		}
 		
 	}
@@ -221,30 +219,30 @@ public class BaseUtils {
 		try {
 			
 			waitForMe(10).until(ExpectedConditions.textToBePresentInElement(element, text));
-		}catch(Exception e) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on waiting for element text on" +className()+ "waitTextPresent method");
+			logger.error("problem on waiting for element text" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
+	// This method will wait for iframe in the web page
 	public void waitForFrame(WebElement element) {
 		
 		try {
 			
 			waitForMe(10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
-		}catch(Exception e) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on waiting for element text on" +className()+ "waitTextPresent method");
+			logger.error("problem on waiting for element text" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
-	// pageTitle will return the title of the webpage as a String
+	// pageTitle will return the title of the web page as a String
 	public String getPageTitel(){
 
-		try{ return driver.getTitle(); }catch (Exception ex){
+		try{ return driver.getTitle(); }catch (Exception exception){
 
-			System.out.println("problem on getting the web page title on "+className()+"pageTitle method");
-			ex.printStackTrace();
+			logger.error("problem on getting the web page title" + exceptionClassNameAndMessage(exception));
 		}
 
 		return null;
@@ -255,8 +253,7 @@ public class BaseUtils {
 
 		try{ return driver.getCurrentUrl(); }catch (Exception exception){
 
-			System.out.println("problem on getting the current url on "+ className() + "currentURL method");
-			exception.printStackTrace();
+			logger.error("problem on getting the current url" + exceptionClassNameAndMessage(exception));
 		}
 
 		return null;
@@ -267,12 +264,10 @@ public class BaseUtils {
 		
 		JavascriptExecutor js = null;
 		
-		try {js = (JavascriptExecutor) driver;}catch(Exception ex) {
+		try {js = (JavascriptExecutor) driver;}catch(Exception exception) {
 			
-			System.out.println("problem on creating object for Java Script Executor on "+ className() + "javaScriptObj method");
-			ex.printStackTrace();
+			logger.error("problem on creating object for Java Script Executor" + exceptionClassNameAndMessage(exception));
 			}
-		
 		return js;
 	}
 	
@@ -284,10 +279,9 @@ public class BaseUtils {
 		
 		javaScriptObj().executeScript("arguments[0].scrollIntoView();", element);
 		
-		}catch (Exception ex) {
+		}catch (Exception exception) {
 			
-			System.out.println("problem on Java Script scrollIntoView on "+ className() + "scrollIntoView method");
-			ex.printStackTrace();
+			logger.error("problem on Java Script scrollIntoView" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -298,10 +292,9 @@ public class BaseUtils {
 			
 			javaScriptObj().executeScript("window.scrollBy(0,"+down+")", "");
 			
-			}catch (Exception ex) {
+			}catch (Exception exception) {
 				
-				System.out.println("problem on Java Script scroll down on "+ className() + "verticalScroll method");
-				ex.printStackTrace();
+				logger.error("problem on Java Script scroll down" + exceptionClassNameAndMessage(exception));
 			}
 	}
 	
@@ -312,10 +305,9 @@ public class BaseUtils {
 			
 			javaScriptObj().executeScript("arguments[0].click();", element);
 			
-		} catch (Exception e) {
+		} catch (Exception exception) {
 
-			System.out.println("problem on clicking using javascript in "+ className()+ "clickElementUsingJavaScript method");
-			e.printStackTrace();
+			logger.error("problem on clicking using javascript" + exceptionClassNameAndMessage(exception));
 		}
 
 	}
@@ -324,10 +316,9 @@ public class BaseUtils {
 	public void clerTextUsingJavaScript(WebElement element) {
 		try {
 			javaScriptObj().executeScript("arguments[0].value = '';", element);
-		} catch (Exception e) {
+		} catch (Exception exception) {
 			
-			System.out.println("problem clearing input field using javascript");
-			e.printStackTrace();
+			logger.error("problem clearing input field using javascript" + exceptionClassNameAndMessage(exception));
 		}
 		
 	}
@@ -338,10 +329,9 @@ public class BaseUtils {
 
 		Select select = null;
 		
-		try{ select = new Select(element); }catch(Exception ex) {
+		try{ select = new Select(element); }catch(Exception exception) {
 			
-			System.out.println("problem on creating object for select class on "+ className() + "selectObj method");
-			ex.printStackTrace();
+			logger.error("problem on creating object for select class" + exceptionClassNameAndMessage(exception));
 		}
 		
 		return select;
@@ -351,10 +341,9 @@ public class BaseUtils {
 	// parameter => (element, text)
 	public void selectVisibleText(WebElement element, String text) {
 		
-		try{ selectObj(element).selectByVisibleText(text); }catch(Exception ex) {
+		try{ selectObj(element).selectByVisibleText(text); }catch(Exception exception) {
 			
-			System.out.println("problem on selecting by visible text on "+ className() + "selectVisibleText method");
-			ex.printStackTrace();
+			logger.error("problem on selecting by visible text" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -377,20 +366,19 @@ public class BaseUtils {
 			robotObject().keyRelease(KeyEvent.VK_CONTROL);
 			robotObject().keyRelease(KeyEvent.VK_V);
 		
-		}catch(Exception ex) {
+		}catch(Exception exception) {
 			
-			System.out.println("problem on pressing control + V on keyboard "+ className()+"ctrlV method");
+			logger.error("problem on pressing control + V on keyboard" + exceptionClassNameAndMessage(exception));
 			
-			ex.printStackTrace();
 		}
 	}
 	
 	// this method will open a new browser tab
 	public void openNewTab() {
 		
-		try{ driver.switchTo().newWindow(WindowType.TAB); } catch(Exception ex) {
+		try{ driver.switchTo().newWindow(WindowType.TAB); } catch(Exception exception) {
 			
-			System.out.println("problem on opening new browser tap "+ className() +"openNewTab method");
+			logger.error("problem on opening new browser tap "+ exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -399,10 +387,9 @@ public class BaseUtils {
 		
 		String windID = null;
 		
-		try{ windID = driver.getWindowHandle(); }catch(Exception ex) {
+		try{ windID = driver.getWindowHandle(); }catch(Exception exception) {
 			
-			System.out.println("problem on getting the current window ID " +className()+ "getCurrentWinID method");
-			ex.printStackTrace();
+			logger.error("problem on getting the current window ID" + exceptionClassNameAndMessage(exception));
 		}
 		
 		return windID;
@@ -413,10 +400,9 @@ public class BaseUtils {
 			
 			Set<String> windID = null;
 			
-			try{ windID = driver.getWindowHandles(); }catch(Exception ex) {
+			try{ windID = driver.getWindowHandles(); }catch(Exception exception) {
 				
-				System.out.println("problem on getting the all window ID's " +className()+ "getCurrentWinID method");
-				ex.printStackTrace();
+				logger.error("problem on getting the all window ID's" + exceptionClassNameAndMessage(exception));
 			}
 			
 			return windID;
@@ -426,10 +412,9 @@ public class BaseUtils {
 	// this method will launch new URL on the current browser tab
 	public void launchNewURL(String URL) {
 		
-		try { driver.navigate().to(URL); }catch(Exception ex) {
+		try { driver.navigate().to(URL); }catch(Exception exception) {
 			
-			System.out.println("problem on launching new url " +className()+ "launchNewURL method");
-			ex.printStackTrace();
+			logger.error("problem on launching new url" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -437,9 +422,9 @@ public class BaseUtils {
 	// parameter => wind id
 	public void switchDriver(String id) {
 		
-		try { driver.switchTo().window(id); }catch(Exception ex) {
+		try { driver.switchTo().window(id); }catch(Exception exception) {
 			
-			System.out.println("problem on switching driver " +className()+ "switchDriver method");
+			logger.error("problem on switching driver" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
@@ -449,9 +434,9 @@ public class BaseUtils {
 		
 		String text = null;
 		
-		try{ text = element.getText(); }catch(Exception ex) {
+		try{ text = element.getText(); }catch(Exception exception) {
 			
-			System.out.println("problem on getting text from the web element "+ className()+ "getElementText");
+			logger.error("problem on getting text from the web element" + exceptionClassNameAndMessage(exception));
 		}
 		
 		return text;
@@ -532,22 +517,27 @@ public class BaseUtils {
 	// this method is used to switch to iFrame
 	public void switchToFrame(WebElement element) {
 		
-		driver.switchTo().frame(element);
+		try { driver.switchTo().frame(element); } catch (Exception exception) {
+			
+			logger.error("problem on switching to frame" + exceptionClassNameAndMessage(exception));
+		}
 	}
 	
 	// this method used for switching back from frame to default content
 	public void switchToDefaultContent() {
 		
-		driver.switchTo().defaultContent();
+		try { driver.switchTo().defaultContent(); } catch (Exception exception) {
+			
+			logger.error("problem on switching frame to default content" + exceptionClassNameAndMessage(exception));
+		}
 	}
 	
 	// this method will go back to the previous page 
 	public void backPage() {
 		
-		try {driver.navigate().back();}catch(Exception ex) {
+		try {driver.navigate().back();}catch(Exception exception) {
 			
-			System.out.println("Problem on going back page");
-			ex.printStackTrace();
+			logger.error("Problem on going back page" + exceptionClassNameAndMessage(exception));
 		}
 	}
 	
