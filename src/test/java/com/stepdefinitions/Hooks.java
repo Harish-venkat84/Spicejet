@@ -38,6 +38,9 @@ public class Hooks extends BaseUtils{
 			System.out.println("scenario status :"+status);
 		}
 		
+		imageCount++;
+		
+		new BaseUtils().takeSnapShot(driver, System.getProperty("user.dir")+"\\Screenshot\\img"+imageCount+".png");
 		
 	}
 	

@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
 					        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
 					},
 
-					tags = ("@SignUpValidCredentials")
+					tags = ("@loginInvaildCredentials")
 				)
 
 

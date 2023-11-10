@@ -3,14 +3,18 @@ package com.spicejet.utils;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -541,4 +545,24 @@ public class BaseUtils {
 		}
 	}
 	
+	protected static int imageCount = 0;
+	
+	public void takeSnapShot(WebDriver webdriver,String fileWithPath) {
+		
+		try {
+			
+			TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+			
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			
+			File DestFile=new File(fileWithPath);
+			
+			FileUtils.copyFile(SrcFile, DestFile);
+			
+		} catch (Exception exception) {
+
+			logger.error("Problem on Taking snap shot" + exceptionClassNameAndMessage(exception));
+		
+		}
+	}
 }
